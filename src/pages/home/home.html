@@ -1,14 +1,30 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Product Scanner
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <br/>
+  <button ion-button full icon-left (click)="scan($event)" color="secondary">
+    <ion-icon name="ios-barcode-outline"></ion-icon>
+    Produkt Scannen
+  </button>
+
+  <br/>
+
+  <h2>Kürzlich gescannte Produkte</h2>
+
+  <div *ngIf="recents.length == 0">Es gibt noch keine kürzlich gecannten Produkte.</div>
+  <ion-list *ngIf="recents.length > 0">
+    <ion-item *ngFor="let item of recents" (click)="open(item.barcode, false)">
+      <ion-thumbnail item-left>
+        <img src="{{item.image}}">
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <p>{{item.barcode}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

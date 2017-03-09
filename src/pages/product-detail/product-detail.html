@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Produkt-Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h1>
+    <span>{{product?.attributes.name}}</span>
+  </h1>
+
+  <br/>
+  <div class="images">
+    <ion-slides pager>
+      <ion-slide *ngFor="let image of product?.attributes.images">
+        <img width="80" height="80" src="{{image.medium}}"/>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <br/><br/>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Nährwerte
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="product?.attributes.nutrients.length == 0">Keine Nährungswerte verfügbar</div>
+      <ion-grid *ngIf="product?.attributes.nutrients.length > 0">
+        <ion-row>
+          <ion-col col-4></ion-col>
+          <ion-col>per 100g</ion-col>
+          <ion-col>per Tag</ion-col>
+          <ion-col>per Portion</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let nutrient of product?.attributes.nutrients">
+          <ion-col col-4>{{nutrient['name-translations'].de}} <br/>(in {{nutrient.unit}})</ion-col>
+          <ion-col>{{nutrient['per-hundred']}}</ion-col>
+          <ion-col>{{nutrient['per-day']}}</ion-col>
+          <ion-col>{{nutrient['per-portion']}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

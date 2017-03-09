@@ -1,0 +1,10 @@
+page-product-detail {
+  .row:nth-child(even) {
+    background-color: color($colors, light);
+  }
+
+  .images {
+    max-height: 300px;
+  }
+}
+
